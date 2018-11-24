@@ -28,7 +28,7 @@ read -r mailAdress
 sed -i "s/MAILADRESS/${mailAdress}/g" ${cvInputNameTmp}
 
 echo "Generating PDF..."
-pdflatex --jobname=${jobOutputName} ${cvInputNameTmp}
+pdflatex -jobname=${jobOutputName} ${cvInputNameTmp}
 xdg-open ${cvOutputName}
 
 echo "Cleaning temporary working file"
