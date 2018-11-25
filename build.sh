@@ -2,6 +2,7 @@
 cvInputName='cv.tex'
 cvInputNameTmp='tmp_cv.tex'
 jobOutputName='cv'
+cvOuputtName='cv.pdf'
 
 echo "Create temporary working file: ${cvInputName}"
 cp ${cvInputName} ${cvInputNameTmp}
