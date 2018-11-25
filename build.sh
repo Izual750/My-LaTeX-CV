@@ -2,38 +2,37 @@
 cvInputName='cv.tex'
 cvInputNameTmp='tmp_cv.tex'
 jobOutputName='cv'
-cvOuputtName='cv.pdf'
 
-echo "Create temporary working file: ${cvInputName}"
+echo "Create temporary working file: ${cvInputNameTmp}"
 cp ${cvInputName} ${cvInputNameTmp}
 
 # Replace sensitive fields
-echo "Address:"
-read -r address
+read -p "Address:" address
+address=${address:-${__CV_ADDRESS}}
 sed -i "s/ADDRESS/${address}/g" ${cvInputNameTmp}
 
-echo "City:"
-read -r city
+read -p "City:" city
+city=${city:-${__CV_CITY}}
 sed -i "s/CITY/${city}/g" ${cvInputNameTmp}
 
-echo "State:"
-read -r state
+read -p "State:" state
+state=${state:-${__CV_STATE}}
 sed -i "s/STATE/${state}/g" ${cvInputNameTmp}
 
-echo "phoneNumber:"
-read -r phoneNumber
+read -p "phoneNumber:" phoneNumber
+phoneNumber=${phoneNumber:-${__CV_PHONENUMBER}}
 sed -i "s/PHONENUMBER/${phoneNumber}/g" ${cvInputNameTmp}
 
-echo "mailAdress:"
-read -r mailAdress
-sed -i "s/MAILADRESS/${mailAdress}/g" ${cvInputNameTmp}
+read -p "mails:" mail
+mail=${mail:-${__CV_MAILADDRESS}}
+sed -i "s/MAIL/${mail}/g" ${cvInputNameTmp}
 
 echo "Generating PDF..."
 pdflatex -jobname=${jobOutputName} ${cvInputNameTmp}
-xdg-open ${cvOutputName}
+xdg-open ${jobOutputName}.pdf
 
 echo "Cleaning temporary working file"
-rm ${jobOutputName}.pdf
+rm ${jobInputNameTmp}
 
 echo "Done !"
 
